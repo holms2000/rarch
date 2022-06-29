@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Регистрация пациентов</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="indexPage">
+    <!--h1 class="Center">Веб-базированный генератор отчетов РАРЧ в Эмбриологии</h1-->
+    <h3 class="Center">Российская Ассоциация Репродукции Человека</h3>				
+    <h4 class="Center">Национальный регистр ВРТ</h4>
+    <h4 id="godtop" class="Center"></h4>
+    <p class="Center"><a href = "index.html" target="_self">Главная страница</a></p>
+    <p class="Center"><a href = "table1.html" target="_self">Лечебные циклы, беременности, роды</a></p>
+    <!--p class="Center"><a href = "table1.html" target="_self">Таблица 1. Лечебные циклы, беременности, роды</a></p--> 
+    <h4>Список пациентов с данными</h4>
+    <form class="form-inline" name="userForm">
+        <input type="hidden" name="id" value="0"/>
+        <div class="form-group">
+            <label for="par1">Регномер:</label>
+            <input size="4" class="form-control" name="par1"/>
+        </div>
+        <div class="form-group">
+        <label for="par2">ФИО:</label>
+            <input class="form-control" name="par2"/>
+        </div>
+        <div class="form-group">
+            <label for="par3">ДР:</label>
+            <input type="date" class="form-control" name="par3"/>
+        </div>
+        <div class="form-group">
+            <label for="par4">Дата учета:</label>
+            <input type="date" class="form-control" name="par4"/>
+        </div>
+        <br/>
+        <div class="form-group">
+            <label for="par5">Начатых циклов c собственными ооцитами - Свежих ЭКО:</label>
+            <input size="2" class="form-control" name="par5" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par6">- Свежих ИКСИ:</label>
+            <input size="2" class="form-control" name="par6" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par7">- Перенос РЭ ЭКО/ИКСИ:</label>
+            <input size="2" class="form-control" name="par7" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par8">- ПГД Свежих:</label>
+            <input size="2" class="form-control" name="par8" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par9">- ПГД РЭ:</label>
+            <input size="2" class="form-control" name="par9" value="0"/>
+        </div>
+        <br/>
+        <div class="form-group">
+            <label for="par10">Пункций/аспираций/размораживаний с cобственными ооцитами - Свежих ЭКО:</label>
+            <input size="2" class="form-control" name="par10" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par11">- Свежих ИКСИ:</label>
+            <input size="2" class="form-control" name="par11" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par12">- Перенос РЭ ЭКО/ИКСИ:</label>
+            <input size="2" class="form-control" name="par12" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par13">- ПГД Свежих:</label>
+            <input size="2" class="form-control" name="par13" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par14">- ПГД РЭ:</label>
+            <input size="2" class="form-control" name="par14" value="0"/>
+        </div>
+        <br/>
+        <div class="form-group">
+            <label for="par15">Отмена переносов с cобственными ооцитами - Свежих ЭКО:</label>
+            <input size="2" class="form-control" name="par15" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par16">- Свежих ИКСИ:</label>
+            <input size="2" class="form-control" name="par16" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par17">- Перенос РЭ ЭКО/ИКСИ:</label>
+            <input size="2" class="form-control" name="par17" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par18">- ПГД Свежих:</label>
+            <input size="2" class="form-control" name="par18" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par19">- ПГД РЭ:</label>
+            <input size="2" class="form-control" name="par19" value="0"/>
+        </div>
+        <br/>
+        <div class="form-group">
+            <label for="par20">Переносов с cобственными ооцитами - Свежих ЭКО:</label>
+            <input size="2" class="form-control" name="par20" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par21">- Свежих ИКСИ:</label>
+            <input size="2" class="form-control" name="par21" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par22">- Перенос РЭ ЭКО/ИКСИ:</label>
+            <input size="2" class="form-control" name="par22" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par23">- ПГД Свежих:</label>
+            <input size="2" class="form-control" name="par23" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par24">- ПГД РЭ:</label>
+            <input size="2" class="form-control" name="par24" value="0"/>
+        </div>
+        <br/>
+        <div class="form-group">
+            <label for="par25">Неизвестных исходов циклов с cобственными ооцитами - Свежих ЭКО:</label>
+            <input size="2" class="form-control" name="par25" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par26">- Свежих ИКСИ:</label>
+            <input size="2" class="form-control" name="par26" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par27">- Перенос РЭ ЭКО/ИКСИ:</label>
+            <input size="2" class="form-control" name="par27" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par28">- ПГД Свежих:</label>
+            <input size="2" class="form-control" name="par28" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par29">- ПГД РЭ:</label>
+            <input size="2" class="form-control" name="par29" value="0"/>
+        </div>
+        <br/>
+        <div class="form-group">
+            <label for="par30">Беременностей с cобственными ооцитами - Свежих ЭКО:</label>
+            <input size="2" class="form-control" name="par30" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par31">- Свежих ИКСИ:</label>
+            <input size="2" class="form-control" name="par31" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par32">- Перенос РЭ ЭКО/ИКСИ:</label>
+            <input size="2" class="form-control" name="par32" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par33">- ПГД Свежих:</label>
+            <input size="2" class="form-control" name="par33" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par34">- ПГД РЭ:</label>
+            <input size="2" class="form-control" name="par34" value="0"/>
+        </div>
+        <br/>
+        <div class="form-group">
+            <label for="par35">Неизвестных исходов беременностей с cобственными ооцитами - Свежих ЭКО:</label>
+            <input size="2" class="form-control" name="par35" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par36">- Свежих ИКСИ:</label>
+            <input size="2" class="form-control" name="par36" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par37">- Перенос РЭ ЭКО/ИКСИ:</label>
+            <input size="2" class="form-control" name="par37" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par38">- ПГД Свежих:</label>
+            <input size="2" class="form-control" name="par38" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par39">- ПГД РЭ:</label>
+            <input size="2" class="form-control" name="par39" value="0"/>
+        </div>
+        <br/>
+        <div class="form-group">
+            <label for="par40">Родов с cобственными ооцитами - Свежих ЭКО:</label>
+            <input size="2" class="form-control" name="par40" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par41">- Свежих ИКСИ:</label>
+            <input size="2" class="form-control" name="par41" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par42">- Перенос РЭ ЭКО/ИКСИ:</label>
+            <input size="2" class="form-control" name="par42" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par43">- ПГД Свежих:</label>
+            <input size="2" class="form-control" name="par43" value="0"/>
+        </div>
+        <div class="form-group">
+            <label for="par44">- ПГД РЭ:</label>
+            <input size="2" class="form-control" name="par44" value="0"/>
+        </div>
+        <div class="panel-body">
+            <button type="submit" class="btn btn-sm btn-primary">Сохранить</button>
+            <a id="reset" class="btn btn-sm btn-primary">Сбросить</a>
+        </div>
+    </form>
+    <table class="table table-condensed table-striped table-bordered">
+        <thead><tr>
+            <th rowspan="2" ></th>
+            <th rowspan="2" class="th1">Регномер</th>
+            <th rowspan="2" class="th2">ФИО</th>
+            <th rowspan="2" class="th3">ДР</th>
+            <th rowspan="2" class="th3">Дата учета</th>
+            <th colspan="5">Начатых циклов cобственных ооцитов</th>
+            <th colspan="5">Пункций/аспираций/размораживаний cобственных ооцитов</th>
+            <th colspan="5">Отмена переносов cобственных ооцитов</th>
+            <th colspan="5">Переносов, всего cобственных ооцитов</th>
+            <th colspan="5">Неизвестных исходов циклов cобственных ооцитов</th>
+            <th colspan="5">Беременностей, всего cобственных ооцитов</th>
+            <th colspan="5">Неизвестных исходов беременностей cобственных ооцитов</th>
+            <th colspan="5">Родов, всего cобственных ооцитов</th>   
+            </tr>
+              <tr>
+            <th class="th1">Свежих ЭКО</th>
+            <th class="th1">Свежих ИКСИ</th>
+            <th class="th1">Перенос РЭ ЭКО/ИКСИ</th>
+            <th class="th1">ПГД Свежих</th>
+            <th class="th1">ПГД РЭ</th>
+
+            <th class="th1">Свежих ЭКО</th>
+            <th class="th1">Свежих ИКСИ</th>
+            <th class="th1">Перенос РЭ ЭКО/ИКСИ</th>
+            <th class="th1">ПГД Свежих</th>
+            <th class="th1">ПГД РЭ</th>
+
+            <th class="th1">Свежих ЭКО</th>
+            <th class="th1">Свежих ИКСИ</th>
+            <th class="th1">Перенос РЭ ЭКО/ИКСИ</th>
+            <th class="th1">ПГД Свежих</th>
+            <th class="th1">ПГД РЭ</th>
+
+            <th class="th1">Свежих ЭКО</th>
+            <th class="th1">Свежих ИКСИ</th>
+            <th class="th1">Перенос РЭ ЭКО/ИКСИ</th>
+            <th class="th1">ПГД Свежих</th>
+            <th class="th1">ПГД РЭ</th>
+
+            <th class="th1">Свежих ЭКО</th>
+            <th class="th1">Свежих ИКСИ</th>
+            <th class="th1">Перенос РЭ ЭКО/ИКСИ</th>
+            <th class="th1">ПГД Свежих</th>
+            <th class="th1">ПГД РЭ</th>
+
+            <th class="th1">Свежих ЭКО</th>
+            <th class="th1">Свежих ИКСИ</th>
+            <th class="th1">Перенос РЭ ЭКО/ИКСИ</th>
+            <th class="th1">ПГД Свежих</th>
+            <th class="th1">ПГД РЭ</th>
+
+            <th class="th1">Свежих ЭКО</th>
+            <th class="th1">Свежих ИКСИ</th>
+            <th class="th1">Перенос РЭ ЭКО/ИКСИ</th>
+            <th class="th1">ПГД Свежих</th>
+            <th class="th1">ПГД РЭ</th>
+
+            <th class="th1">Свежих ЭКО</th>
+            <th class="th1">Свежих ИКСИ</th>
+            <th class="th1">Перенос РЭ ЭКО/ИКСИ</th>
+            <th class="th1">ПГД Свежих</th>
+            <th class="th1">ПГД РЭ</th>
+              </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+   
+    <script>
+    // Получение всех пользователей
+        async function GetUsers() {
+            // отправляет запрос и получаем ответ
+            const response = await fetch("/api/users", {
+                method: "GET",
+                headers: { "Accept": "application/json" }
+            });
+            // если запрос прошел нормально
+            if (response.ok === true) {
+                // получаем данные
+                const users = await response.json();
+                let rows = document.querySelector("tbody"); 
+                users.forEach(user => {
+                    // добавляем полученные элементы в таблицу
+                    rows.append(row(user));
+                });
+            }
+        }
+        // Получение одного пользователя
+        async function GetUser(id) {
+            const response = await fetch("/api/users/" + id, {
+                method: "GET",
+                headers: { "Accept": "application/json" }
+            });
+            if (response.ok === true) {
+                const user = await response.json();
+                const form = document.forms["userForm"];
+                form.elements["id"].value = user._id;
+                form.elements["par1"].value = user.par1;
+                form.elements["par2"].value = user.par2;
+                form.elements["par3"].value = user.par3;
+                form.elements["par4"].value = user.par4;
+                form.elements["par5"].value = user.par5;
+                form.elements["par6"].value = user.par6;
+                form.elements["par7"].value = user.par7;
+                form.elements["par8"].value = user.par8;
+                form.elements["par9"].value = user.par9;
+                form.elements["par10"].value = user.par10;
+                form.elements["par11"].value = user.par11;
+                form.elements["par12"].value = user.par12;
+                form.elements["par13"].value = user.par13;
+                form.elements["par14"].value = user.par14;
+                form.elements["par15"].value = user.par15;
+                form.elements["par16"].value = user.par16;
+                form.elements["par17"].value = user.par17;
+                form.elements["par18"].value = user.par18;
+                form.elements["par19"].value = user.par19;
+                
+                form.elements["par20"].value = user.par20;
+                form.elements["par21"].value = user.par21;
+                form.elements["par22"].value = user.par22;
+                form.elements["par23"].value = user.par23;
+                form.elements["par24"].value = user.par24;
+                form.elements["par25"].value = user.par25;
+                form.elements["par26"].value = user.par26;
+                form.elements["par27"].value = user.par27;
+                form.elements["par28"].value = user.par28;
+                form.elements["par29"].value = user.par29;
+                form.elements["par30"].value = user.par30;
+                form.elements["par31"].value = user.par31;
+                form.elements["par32"].value = user.par32;
+                form.elements["par33"].value = user.par33;
+                form.elements["par34"].value = user.par34;
+                form.elements["par35"].value = user.par35;
+                form.elements["par36"].value = user.par36;
+                form.elements["par37"].value = user.par37;
+                form.elements["par38"].value = user.par38;
+                form.elements["par39"].value = user.par39;
+                form.elements["par40"].value = user.par40;
+                form.elements["par41"].value = user.par41;
+                form.elements["par42"].value = user.par42;
+                form.elements["par43"].value = user.par43;
+                form.elements["par44"].value = user.par44;
+                /*
+                form.elements["par45"].value = user.par45;
+                form.elements["par46"].value = user.par46;
+                form.elements["par47"].value = user.par47;
+                form.elements["par48"].value = user.par48;
+                form.elements["par49"].value = user.par49;
+                form.elements["par50"].value = user.par50;
+                form.elements["par51"].value = user.par51;
+                form.elements["par52"].value = user.par52;
+                form.elements["par53"].value = user.par53;
+
+                form.elements["par54"].value = user.par54;
+                form.elements["par55"].value = user.par55;
+                form.elements["par56"].value = user.par56;
+                form.elements["par57"].value = user.par57;
+                form.elements["par58"].value = user.par58;
+                form.elements["par59"].value = user.par59;
+                form.elements["par60"].value = user.par60;
+                form.elements["par61"].value = user.par61;
+                form.elements["par62"].value = user.par62;
+                form.elements["par63"].value = user.par63;
+                form.elements["par64"].value = user.par64;
+
+                form.elements["par65"].value = user.par65;
+                form.elements["par66"].value = user.par66;
+                form.elements["par67"].value = user.par67;
+                form.elements["par69"].value = user.par68;
+                form.elements["par69"].value = user.par69;
+                form.elements["par70"].value = user.par70;
+                form.elements["par71"].value = user.par71;
+                form.elements["par72"].value = user.par72;
+                form.elements["par73"].value = user.par73;
+                form.elements["par74"].value = user.par74;
+                form.elements["par75"].value = user.par75;
+                */
+
+            }
+        }
+        async function GetOrgHOne() {
+            // отправляет запрос и получаем ответ
+            const response = await fetch("/api/orghone", {
+                method: "GET",
+                headers: { "Accept": "application/json" }
+            });
+            // если запрос прошел нормально
+            if (response.ok === true) {
+                // получаем данные
+                const user = await response.json();
+                GetGod(user.god);
+            }
+        }
+        function GetGod(userGod){
+                let godtop=document.getElementById("godtop");
+                if (userGod!=undefined) godtop.innerHTML=userGod+" год";
+                if (userGod===undefined) godtop.innerHTML='';
+        }
+        // Добавление пользователя
+        async function CreateUser(userpar1, userpar2, userpar3, userpar4, userpar5, userpar6, userpar7, userpar8, userpar9, userpar10, 
+                                  userpar11, userpar12, userpar13, userpar14, userpar15, userpar16, userpar17, userpar18, userpar19, userpar20,
+                                  userpar21, userpar22, userpar23, userpar24, userpar25, userpar26, userpar27, userpar28, userpar29, userpar30,
+                                  userpar31, userpar32, userpar33, userpar34, userpar35, userpar36, userpar37, userpar38, userpar39, userpar40,
+                                  userpar41, userpar42, userpar43, userpar44
+                                  ) {
+  
+            const response = await fetch("api/users", {
+                method: "POST",
+                headers: { "Accept": "application/json", "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    par1:userpar1,
+                    par2:userpar2,
+                    par3:userpar3,
+                    par4:userpar4,
+                    par5:userpar5,
+                    par6:userpar6,
+                    par7:userpar7,
+                    par8:userpar8,
+                    par9:userpar9,
+                    par10:userpar10,
+                    par11:userpar11,
+                    par12:userpar12,
+                    par13:userpar13,
+                    par14:userpar14,
+                    par15:userpar15,
+                    par16:userpar16,
+                    par17:userpar17,
+                    par18:userpar18,
+                    par19:userpar19,
+                    par20:userpar20,
+                    par21:userpar21,
+                    par22:userpar22,
+                    par23:userpar23,
+                    par24:userpar24,
+                    par25:userpar25,
+                    par26:userpar26,
+                    par27:userpar27,
+                    par28:userpar28,
+                    par29:userpar29,
+                    par30:userpar30,
+                    par31:userpar31,
+                    par32:userpar32,
+                    par33:userpar33,
+                    par34:userpar34,
+                    par35:userpar35,
+                    par36:userpar36,
+                    par37:userpar37,
+                    par38:userpar38,
+                    par39:userpar39,
+                    par40:userpar40,
+                    par41:userpar41,
+                    par42:userpar42,
+                    par43:userpar43,
+                    par44:userpar44,
+                })
+            });
+            if (response.ok === true) {
+                const user = await response.json();
+                reset();
+                document.querySelector("tbody").append(row(user));
+            }
+        }
+        // Изменение пользователя
+        async function EditUser(userId, userpar1, userpar2, userpar3, userpar4, userpar5, userpar6, userpar7, userpar8, userpar9, userpar10, 
+        userpar11, userpar12, userpar13, userpar14, userpar15, userpar16, userpar17, userpar18, userpar19, userpar20,
+        userpar21, userpar22, userpar23, userpar24, userpar25, userpar26, userpar27, userpar28, userpar29, userpar30,
+        userpar31, userpar32, userpar33, userpar34, userpar35, userpar36, userpar37, userpar38, userpar39, userpar40,
+        userpar41, userpar42, userpar43, userpar44
+
+        ) {
+            const response = await fetch("api/users", {
+                method: "PUT",
+                headers: { "Accept": "application/json", "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    id: userId,
+                    par1:userpar1,
+                    par2:userpar2,
+                    par3:userpar3,
+                    par4:userpar4,
+                    par5:userpar5,
+                    par6:userpar6,
+                    par7:userpar7,
+                    par8:userpar8,
+                    par9:userpar9,
+                    par10:userpar10,
+                    par11:userpar11,
+                    par12:userpar12,
+                    par13:userpar13,
+                    par14:userpar14,
+                    par15:userpar15,
+                    par16:userpar16,
+                    par17:userpar17,
+                    par18:userpar18,
+                    par19:userpar19,
+                    par20:userpar20,
+                    par21:userpar21,
+                    par22:userpar22,
+                    par23:userpar23,
+                    par24:userpar24,
+                    par25:userpar25,
+                    par26:userpar26,
+                    par27:userpar27,
+                    par28:userpar28,
+                    par29:userpar29,
+                    par30:userpar30,
+                    par31:userpar31,
+                    par32:userpar32,
+                    par33:userpar33,
+                    par34:userpar34,
+                    par35:userpar35,
+                    par36:userpar36,
+                    par37:userpar37,
+                    par38:userpar38,
+                    par39:userpar39,
+                    par40:userpar40,
+                    par41:userpar41,
+                    par42:userpar42,
+                    par43:userpar43,
+                    par44:userpar44,
+                })
+            });
+            if (response.ok === true) {
+                const user = await response.json();
+                reset();
+                document.querySelector("tr[data-rowid='" + user._id + "']").replaceWith(row(user));
+            }
+        }
+        // Удаление пользователя
+        async function DeleteUser(id) {
+            const response = await fetch("/api/users/" + id, {
+                method: "DELETE",
+                headers: { "Accept": "application/json" }
+            });
+            if (response.ok === true) {
+                const user = await response.json();
+                document.querySelector("tr[data-rowid='" + user._id + "']").remove();
+            }
+        }
+  
+        // сброс формы
+        function reset() {
+            const form = document.forms["userForm"];
+            form.reset();
+            form.elements["id"].value = 0;
+        }
+        // создание строки для таблицы
+        function row(user) {
+  
+            const tr = document.createElement("tr");
+            tr.setAttribute("data-rowid", user._id);
+            /* 
+            const idTd = document.createElement("td");
+            idTd.append(user._id);
+            tr.append(idTd);
+            */
+                       
+            const linksTd = document.createElement("td");
+
+            const editLink = document.createElement("a");
+            editLink.setAttribute("data-id", user._id);
+            editLink.setAttribute("style", "cursor:pointer;padding:15px;");
+            editLink.append("Изменить");
+            editLink.addEventListener("click", e => {
+  
+                e.preventDefault();
+                GetUser(user._id);
+            });
+            linksTd.append(editLink);
+  
+            const removeLink = document.createElement("a");
+            removeLink.setAttribute("data-id", user._id);
+            removeLink.setAttribute("style", "cursor:pointer;padding:15px;");
+            removeLink.append("Удалить");
+            removeLink.addEventListener("click", e => {
+  
+                e.preventDefault();
+                DeleteUser(user._id);
+            });
+  
+            linksTd.append(removeLink);
+            tr.appendChild(linksTd); 
+            
+            const par1Td = document.createElement("td");
+            par1Td.append(user.par1);
+            tr.append(par1Td);
+            
+
+            const par2Td = document.createElement("td");
+            par2Td.append(user.par2);
+            tr.append(par2Td);
+
+            const par3Td = document.createElement("td");
+            par3Td.append(user.par3);
+            tr.append(par3Td);
+
+            const par4Td = document.createElement("td");
+            par4Td.append(user.par4);
+            tr.append(par4Td);
+
+            const par5Td = document.createElement("td");
+            par5Td.append(user.par5);
+            tr.append(par5Td);
+
+            const par6Td = document.createElement("td");
+            par6Td.append(user.par6);
+            tr.append(par6Td);
+
+            const par7Td = document.createElement("td");
+            par7Td.append(user.par7);
+            tr.append(par7Td);
+
+            const par8Td = document.createElement("td");
+            par8Td.append(user.par8);
+            tr.append(par8Td);
+
+            const par9Td = document.createElement("td");
+            par9Td.append(user.par9);
+            tr.append(par9Td);
+
+            const par10Td = document.createElement("td");
+            par10Td.append(user.par10);
+            tr.append(par10Td);
+
+            const par11Td = document.createElement("td");
+            par11Td.append(user.par11);
+            tr.append(par11Td);
+  
+            const par12Td = document.createElement("td");
+            par12Td.append(user.par12);
+            tr.append(par12Td);
+
+            const par13Td = document.createElement("td");
+            par13Td.append(user.par13);
+            tr.append(par13Td);
+
+            const par14Td = document.createElement("td");
+            par14Td.append(user.par14);
+            tr.append(par14Td);
+            
+            const par15Td = document.createElement("td");
+            par15Td.append(user.par15);
+            tr.append(par15Td);
+
+            const par16Td = document.createElement("td");
+            par16Td.append(user.par16);
+            tr.append(par16Td);
+
+            const par17Td = document.createElement("td");
+            par17Td.append(user.par17);
+            tr.append(par17Td);
+
+            const par18Td = document.createElement("td");
+            par18Td.append(user.par18);
+            tr.append(par18Td);
+
+            const par19Td = document.createElement("td");
+            par19Td.append(user.par19);
+            tr.append(par19Td);
+            
+            const par20Td = document.createElement("td");
+            par20Td.append(user.par20);
+            tr.append(par20Td);
+
+            const par21Td = document.createElement("td");
+            par21Td.append(user.par21);
+            tr.append(par21Td);
+            
+            const par22Td = document.createElement("td");
+            par22Td.append(user.par22);
+            tr.append(par22Td);
+
+            const par23Td = document.createElement("td");
+            par23Td.append(user.par23);
+            tr.append(par23Td);
+
+            const par24Td = document.createElement("td");
+            par24Td.append(user.par24);
+            tr.append(par24Td);
+
+            const par25Td = document.createElement("td");
+            par25Td.append(user.par25);
+            tr.append(par25Td);
+            
+            const par26Td = document.createElement("td");
+            par26Td.append(user.par26);
+            tr.append(par26Td);
+            
+            const par27Td = document.createElement("td");
+            par27Td.append(user.par27);
+            tr.append(par27Td);
+
+            const par28Td = document.createElement("td");
+            par28Td.append(user.par28);
+            tr.append(par28Td);
+
+            const par29Td = document.createElement("td");
+            par29Td.append(user.par29);
+            tr.append(par29Td);
+
+            const par30Td = document.createElement("td");
+            par30Td.append(user.par30);
+            tr.append(par30Td);
+
+            const par31Td = document.createElement("td");
+            par31Td.append(user.par31);
+            tr.append(par31Td);
+            
+            const par32Td = document.createElement("td");
+            par32Td.append(user.par32);
+            tr.append(par32Td);
+
+            const par33Td = document.createElement("td");
+            par33Td.append(user.par33);
+            tr.append(par33Td);
+
+            const par34Td = document.createElement("td");
+            par34Td.append(user.par34);
+            tr.append(par34Td);
+            
+            const par35Td = document.createElement("td");
+            par35Td.append(user.par35);
+            tr.append(par35Td);
+
+            const par36Td = document.createElement("td");
+            par36Td.append(user.par36);
+            tr.append(par36Td);
+            
+            const par37Td = document.createElement("td");
+            par37Td.append(user.par37);
+            tr.append(par37Td);
+
+            const par38Td = document.createElement("td");
+            par38Td.append(user.par38);
+            tr.append(par38Td);
+            
+            const par39Td = document.createElement("td");
+            par39Td.append(user.par39);
+            tr.append(par39Td);
+            
+            const par40Td = document.createElement("td");
+            par40Td.append(user.par40);
+            tr.append(par40Td);
+            
+            const par41Td = document.createElement("td");
+            par41Td.append(user.par41);
+            tr.append(par41Td);
+
+            const par42Td = document.createElement("td");
+            par42Td.append(user.par42);
+            tr.append(par42Td);
+
+            const par43Td = document.createElement("td");
+            par43Td.append(user.par43);
+            tr.append(par43Td);
+
+            const par44Td = document.createElement("td");
+            par44Td.append(user.par44);
+            tr.append(par44Td);
+            /*
+            const linksTd = document.createElement("td");
+
+            const editLink = document.createElement("a");
+            editLink.setAttribute("data-id", user._id);
+            editLink.setAttribute("style", "cursor:pointer;padding:15px;");
+            editLink.append("Изменить");
+            editLink.addEventListener("click", e => {
+  
+                e.preventDefault();
+                GetUser(user._id);
+            });
+            linksTd.append(editLink);
+  
+            const removeLink = document.createElement("a");
+            removeLink.setAttribute("data-id", user._id);
+            removeLink.setAttribute("style", "cursor:pointer;padding:15px;");
+            removeLink.append("Удалить");
+            removeLink.addEventListener("click", e => {
+  
+                e.preventDefault();
+                DeleteUser(user._id);
+            });
+  
+            linksTd.append(removeLink);
+            tr.appendChild(linksTd);
+            */  
+            return tr;
+        }
+        // сброс значений формы
+        document.getElementById("reset").click(function (e) {
+  
+            e.preventDefault();
+            reset();
+        })
+  
+        // отправка формы
+        document.forms["userForm"].addEventListener("submit", e => {
+            e.preventDefault();
+            const form = document.forms["userForm"];
+            const id = form.elements["id"].value;
+            const par1 = form.elements["par1"].value;
+            const par2 = form.elements["par2"].value;
+            const par3 = form.elements["par3"].value;
+            const par4 = form.elements["par4"].value;
+            const par5 = form.elements["par5"].value;
+            const par6 = form.elements["par6"].value;
+            const par7 = form.elements["par7"].value;
+            const par8 = form.elements["par8"].value;
+            const par9 = form.elements["par9"].value;
+            const par10 = form.elements["par10"].value;
+            const par11 = form.elements["par11"].value;
+            const par12 = form.elements["par12"].value;
+            const par13 = form.elements["par13"].value;
+            const par14 = form.elements["par14"].value;
+            const par15 = form.elements["par15"].value;
+            const par16 = form.elements["par16"].value;
+            const par17 = form.elements["par17"].value;
+            const par18 = form.elements["par18"].value;
+            const par19 = form.elements["par19"].value;
+            const par20 = form.elements["par20"].value;
+            const par21 = form.elements["par21"].value;
+            const par22 = form.elements["par22"].value;
+            const par23 = form.elements["par23"].value;
+            const par24 = form.elements["par24"].value;
+            const par25 = form.elements["par25"].value;
+            const par26 = form.elements["par26"].value;
+            const par27 = form.elements["par27"].value;
+            const par28 = form.elements["par28"].value;
+            const par29 = form.elements["par29"].value;
+            const par30 = form.elements["par30"].value;
+            const par31 = form.elements["par31"].value;
+            const par32 = form.elements["par32"].value;
+            const par33 = form.elements["par33"].value;
+            const par34 = form.elements["par34"].value;
+            const par35 = form.elements["par35"].value;
+            const par36 = form.elements["par36"].value;
+            const par37 = form.elements["par37"].value;
+            const par38 = form.elements["par38"].value;
+            const par39 = form.elements["par39"].value;
+            const par40 = form.elements["par40"].value;
+            const par41 = form.elements["par41"].value;
+            const par42 = form.elements["par42"].value;
+            const par43 = form.elements["par43"].value;
+            const par44 = form.elements["par44"].value;
+            
+            if (id == 0)
+                CreateUser(par1, par2, par3, par4, par5, par6, par7, par8, par9, par10, 
+                           par11, par12, par13, par14, par15, par16, par17, par18, par19, par20,
+                           par21, par22, par23, par24, par25, par26, par27, par28, par29, par30,
+                           par31, par32, par33, par34, par35, par36, par37, par38, par39, par40,
+                           par41, par42, par43, par44  
+                );
+            else
+                EditUser(id, par1, par2, par3, par4, par5, par6, par7, par8, par9, par10, 
+                         par11, par12, par13, par14, par15, par16, par17, par18, par19, par20,
+                         par21, par22, par23, par24, par25, par26, par27, par28, par29, par30,
+                         par31, par32, par33, par34, par35, par36, par37, par38, par39, par40,
+                         par41, par42, par43, par44
+                         );
+        });
+  
+        // загрузка пользователей
+        GetUsers();
+        GetOrgHOne();
+    </script>
+    </div>
+</body>
+</html>

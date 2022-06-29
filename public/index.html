@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Главная страница</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="indexPage">
+    <!--h1 class="Center">Веб-базированный генератор отчетов РАРЧ в Эмбриологии</h1-->
+    <h3 class="Center">Российская Ассоциация Репродукции Человека</h3>				
+    <h4 class="Center">Национальный регистр ВРТ</h4>		
+    <h4 id="godtop" class="Center"></h4>
+    <!--p class="Center"><a href = "tabletitle.html" target="_self">Заголовочная таблица</a></p-->
+    <p class="Center"><a href = "tablepatient.html" target="_self">Таблица регистрации пациентов</a></p-->
+    <p class="Center"><a href = "table1.html" target="_self">Лечебные циклы, беременности, роды</a></p>
+    <!--p class="Center"><a href = "table1.html" target="_self">Таблица 1. Лечебные циклы, беременности, роды</a></p>  
+    <p class="Center"><a href = "table2.html" target="_self">Таблица 2. In vitro maturaation (IVM) и криоконсервированные собственные ооциты (FOR). Донорство эмбрионов</a></p>				
+    <p class="Center"><a href = "table3.html" target="_self">Таблица 3. Возраст женщины и результаты ВРТ</a></p>				 
+    <p class="Center"><a href = "table4.html" target="_self">Таблица 4. Осложнения лечебных циклов ВРТ, потребовавшие госпитализации</a></p>			
+    <p class="Center"><a href = "table5.html" target="_self">Таблица 5. Результаты и число перенесенных эмбрионов</a></p>				
+    <p class="Center"><a href = "table6.html" target="_self">Таблица 6. Преимплантационная генетическая диагностика/скрининг (ПГД/ПГС)</a></p>				
+    <p class="Center"><a href = "table7.html" target="_self">Таблица 7. Суррогатное материнство (СМ)</a></p>			
+    <p class="Center"><a href = "table8.html" target="_self">Таблица 8. Внутриматочные инсеминации</a></p>				
+    <p class="Center"><a href = "table9.html" target="_self">Таблица 9. Срок родов в зависимости от вида процедуры и многоплодия</a></p>
+    <p class="Center"><a href = "tablepatient.html" target="_self">Таблица 10. Финансирование циклов ВРТ</a></p-->
+    
+    <h4 class="Center">Заголовочная таблица отчета</h4>
+    <form name="userForm">
+        <input type="hidden" name="id" value="0" />
+        <div class="form-group">
+            <label for="god">Год:</label>
+            <!--input  id="god" class="form-control" name="god" /-->
+            <select id="god"><br>
+                <option value=""></option>
+                <script>
+                  let y = 2019
+                  while(y<2039)
+                  {
+                    y++
+                   document.getElementById('god').innerHTML += '<option>'+y+'</option>'
+                //if (y=2022) document.getElementById('god').innerHTML += '<option selected>'+y+'</option>'
+
+                  }
+                </script>
+              </select>
+        </div>
+        <div class="form-group">
+            <label for="age">Организация:</label>
+            <input class="form-control" name="org" />
+        </div>
+        <div class="form-group">
+            <label for="age">Адрес:</label>
+            <input class="form-control" name="adr" />
+        </div>
+        <div class="panel-body">
+            <button type="submit" class="btn btn-sm btn-primary">Сохранить</button>
+            <!--a id="reset" class="btn btn-sm btn-primary">Сбросить</a-->
+        </div>
+    </form>
+    <table class="table table-condensed table-striped table-bordered">
+        <thead><tr><!--th>Id</th--><th>Год</th><th>Организация</th><th>Адрес</th><th></th></tr></thead>
+        <tbody>
+        </tbody>
+    </table>
+   
+    <script>
+    // Получение всех пользователей
+        async function GetOrgHs() {
+            // отправляет запрос и получаем ответ
+            const response = await fetch("/api/orghs", {
+                method: "GET",
+                headers: { "Accept": "application/json" }
+            });
+            // если запрос прошел нормально
+            if (response.ok === true) {
+                // получаем данные
+                const users = await response.json();
+                let rows = document.querySelector("tbody"); 
+                users.forEach(user => {
+                    // добавляем полученные элементы в таблицу
+                    rows.append(row(user));
+                });
+            }
+        }
+        async function GetOrgHOne() {
+            // отправляет запрос и получаем ответ
+            const response = await fetch("/api/orghone", {
+                method: "GET",
+                headers: { "Accept": "application/json" }
+            });
+            // если запрос прошел нормально
+            if (response.ok === true) {
+                // получаем данные
+                const user = await response.json();
+                const form = document.forms["userForm"];
+                form.elements["id"].value = user._id;
+                form.elements["god"].value = user.god;
+                form.elements["org"].value = user.org;
+                form.elements["adr"].value = user.adr;
+                GetGod(user.god);
+            }
+        }
+        // Получение одного пользователя
+        async function GetOrgH(id) {
+            const response = await fetch("/api/orgh/" + id, {
+                method: "GET",
+                headers: { "Accept": "application/json" }
+            });
+            if (response.ok === true) {
+                const user = await response.json();
+                const form = document.forms["userForm"];
+                form.elements["id"].value = user._id;
+                form.elements["god"].value = user.god;
+                form.elements["org"].value = user.org;
+                form.elements["adr"].value = user.adr;                
+            }
+        }
+        // Добавление пользователя
+        async function CreateOrgH(userGod, userOrg, userAdr) {
+  
+            const response = await fetch("api/orgh", {
+                method: "POST",
+                headers: { "Accept": "application/json", "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    god: userGod,
+                    org: userOrg,
+                    adr: userAdr
+                })
+            });
+            if (response.ok === true) {
+                const user = await response.json();
+                reset();
+                document.querySelector("tbody").append(row(user));
+                const form = document.forms["userForm"];
+                form.elements["id"].value =user._id;
+                GetGod(userGod);
+            }
+        }
+        // Изменение пользователя
+        async function EditOrgH(userId, userGod, userOrg, userAdr) {
+            const response = await fetch("api/orgh", {
+                method: "PUT",
+                headers: { "Accept": "application/json", "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    id: userId,
+                    god: userGod,
+                    org: userOrg,
+                    adr: userAdr
+                })
+            });
+            if (response.ok === true) {
+                const user = await response.json();
+                reset();
+                document.querySelector("tr[data-rowid='" + user._id + "']").replaceWith(row(user));
+                GetGod(userGod);
+            }
+        }
+        // Удаление пользователя
+        async function DeleteOrgH(id) {
+            const response = await fetch("/api/orgh/" + id, {
+                method: "DELETE",
+                headers: { "Accept": "application/json" }
+            });
+            if (response.ok === true) {
+                const user = await response.json();
+                document.querySelector("tr[data-rowid='" + user._id + "']").remove();
+                resetx();
+                GetGod()
+            }
+        }
+        function GetGod(userGod){
+                let godtop=document.getElementById("godtop");
+                if (userGod!=undefined) godtop.innerHTML=userGod+" год";
+                if (userGod===undefined) godtop.innerHTML='';
+        }
+        function resetx() {
+            const form = document.forms["userForm"];
+            form.reset();
+            form.elements["id"].value = 0;
+        }
+        // сброс формы
+        function reset() {
+            const form = document.forms["userForm"];
+            //form.reset();
+            //form.elements["id"].value = 0;
+        }
+        // создание строки для таблицы
+        function row(user) {
+  
+            const tr = document.createElement("tr");
+            tr.setAttribute("data-rowid", user._id);
+            /*
+            const idTd = document.createElement("td");
+            idTd.append(user._id);
+            tr.append(idTd);
+            */
+            const godTd = document.createElement("td");
+            godTd.append(user.god);
+            tr.append(godTd);
+  
+            const orgTd = document.createElement("td");
+            orgTd.append(user.org);
+            tr.append(orgTd);
+            
+            const adrTd = document.createElement("td");
+            adrTd.append(user.adr);
+            tr.append(adrTd);
+
+            const linksTd = document.createElement("td");
+             
+            /*const editLink = document.createElement("a");
+            editLink.setAttribute("data-id", user._id);
+            editLink.setAttribute("style", "cursor:pointer;padding:15px;");
+            editLink.append("Изменить");
+            editLink.addEventListener("click", e => {
+  
+                e.preventDefault();
+                GetOrgH(user._id);
+            });
+            linksTd.append(editLink);
+            */
+            const removeLink = document.createElement("a");
+            removeLink.setAttribute("data-id", user._id);
+            removeLink.setAttribute("style", "cursor:pointer;padding:15px;");
+            removeLink.append("Удалить");
+            removeLink.addEventListener("click", e => {
+  
+                e.preventDefault();
+                DeleteOrgH(user._id);
+            });
+  
+            linksTd.append(removeLink);
+            tr.appendChild(linksTd);
+  
+            return tr;
+        }
+        // сброс значений формы
+        /*
+        document.getElementById("reset").click(function (e) {
+  
+            e.preventDefault();
+            reset();
+        })
+        */
+        // отправка формы
+        document.forms["userForm"].addEventListener("submit", e => {
+            e.preventDefault();
+            const form = document.forms["userForm"];
+            const id = form.elements["id"].value;
+            const god = form.elements["god"].value;
+            const org = form.elements["org"].value;
+            const adr = form.elements["adr"].value;
+            if (id == 0)
+                CreateOrgH(god,org,adr);
+            else
+                EditOrgH(id,god, org, adr);
+        });
+         // загрузка первой строки
+         GetOrgHOne();
+         // загрузка пользователей
+        GetOrgHs();
+    </script
+    </div>
+</body>
+</html>
